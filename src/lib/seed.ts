@@ -1,6 +1,6 @@
 import type { Event } from './event'
 
-export const SEED_VERSION = 1
+export const SEED_VERSION = 2
 
 const at = (month: number, day: number, hour: number, minute: number) =>
   new Date(2026, month - 1, day, hour, minute).getTime()
