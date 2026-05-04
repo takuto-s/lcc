@@ -1,0 +1,52 @@
+:root {
+  --bg: #fff8dc;
+  --banner-bg: #ffffff;
+  --banner-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  --accent: #f5c518;
+  --accent-light: #fff3b0;
+  --accent-dark: #c9a014;
+  --text-main: #222;
+  --text-sub: #666;
+  --border: #eee;
+
+  --font-sans:
+    -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic',
+    'Meiryo', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  background: #ddd;
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+#app {
+  max-width: 480px;
+  min-height: 100vh;
+  margin: 0 auto;
+  background: var(--bg);
+  position: relative;
+  overflow-x: hidden;
+}
+
+button {
+  font-family: inherit;
+}
+
+a {
+  color: inherit;
+}
