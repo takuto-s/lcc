@@ -10,22 +10,14 @@
 
   const now = Date.now()
   const upcoming = $derived(isUpcoming(event, now))
-  const submitted = $derived<AttendanceState | undefined>(appState.attendances[event.id])
+  const current = $derived<AttendanceState | undefined>(appState.attendances[event.id])
 
-  let selected = $state<AttendanceState | undefined>(undefined)
-
-  $effect(() => {
-    selected = appState.attendances[event.id]
-  })
-
-  const submit = () => {
-    if (selected !== undefined) {
-      submitAttendance(event.id, selected)
-    }
+  const select = (state: AttendanceState) => {
+    submitAttendance(event.id, state)
   }
 
-  const submittedLabel = $derived(
-    submitted === 'attending' ? '出席で提出済み' : submitted === 'absent' ? '欠席で提出済み' : '未提出',
+  const statusLabel = $derived(
+    current === 'attending' ? '出席' : current === 'absent' ? '欠席' : '未提出',
   )
 </script>
 
@@ -74,31 +66,22 @@
       <h2 class="section-title">出欠</h2>
       {#if upcoming}
         <div class="choices">
-          <label class="choice" class:selected={selected === 'attending'}>
-            <input type="radio" name="att" value="attending" bind:group={selected} />
+          <button class="choice" class:selected={current === 'attending'} onclick={() => select('attending')}>
             <span>出席</span>
-          </label>
-          <label class="choice" class:selected={selected === 'absent'}>
-            <input type="radio" name="att" value="absent" bind:group={selected} />
+          </button>
+          <button class="choice" class:selected={current === 'absent'} onclick={() => select('absent')}>
             <span>欠席</span>
-          </label>
+          </button>
         </div>
-        <button
-          class="submit"
-          disabled={selected === undefined || selected === submitted}
-          onclick={submit}
-        >
-          {submitted ? '更新する' : '提出する'}
-        </button>
       {:else}
         <div class="status-row">
           <span
             class="status-pill"
-            class:attending={submitted === 'attending'}
-            class:absent={submitted === 'absent'}
-            class:missing={submitted === undefined}
+            class:attending={current === 'attending'}
+            class:absent={current === 'absent'}
+            class:missing={current === undefined}
           >
-            {submittedLabel}
+            {statusLabel}
           </span>
         </div>
       {/if}
@@ -110,6 +93,7 @@
   .detail {
     background: var(--bg);
     min-height: 100vh;
+    padding-top: 56px;
     padding-bottom: 32px;
   }
   .back {
@@ -229,24 +213,7 @@
     border-color: var(--accent);
     background: var(--accent-light);
   }
-  .submit {
-    width: 100%;
-    background: var(--accent);
-    color: #fff;
-    border: none;
-    border-radius: 999px;
-    padding: 13px 0;
-    font-size: 15px;
-    font-weight: 700;
-    cursor: pointer;
-    text-shadow: rgba(0, 0, 0, 0.15) 1px 1px 0;
-  }
-  .submit:disabled {
-    background: #ddd;
-    color: #888;
-    cursor: not-allowed;
-    text-shadow: none;
-  }
+
   .status-row {
     display: flex;
     justify-content: center;

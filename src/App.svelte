@@ -53,5 +53,6 @@
   }
   .content {
     flex: 1;
+    padding-bottom: 64px;
   }
 </style>
