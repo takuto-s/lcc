@@ -28,7 +28,7 @@ export const SEED_EVENTS: Event[] = [
     startAtMs: at(5, 13, 12, 0),
     type: 'online',
     onlineUrl: 'https://zoom.us/j/example-2026-05-13',
-    imagePath: '/event-banner0513.png',
+    imagePath: `${import.meta.env.BASE_URL}event-banner0513.png`,
   },
   {
     id: 'real-2026-05-23',
