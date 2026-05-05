@@ -9,6 +9,7 @@ export type Event = {
   onlineUrl?: string
   archiveUrl?: string
   imagePath?: string
+  description?: string
 }
 
 const FALLBACK_DURATION_MS = 3 * 60 * 60 * 1000

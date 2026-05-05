@@ -7,10 +7,12 @@
   let {
     event,
     attendance,
+    past = false,
     onClick,
   }: {
     event: Event
     attendance: AttendanceState | undefined
+    past?: boolean
     onClick: () => void
   } = $props()
 
@@ -19,7 +21,7 @@
   )
 </script>
 
-<button class="banner" onclick={onClick}>
+<button class="banner" class:past onclick={onClick}>
   <div class="row top">
     <span class="date">{formatDateLabel(event.startAtMs)}</span>
     <span class="time">{formatTimeRange(event.startAtMs, event.endAtMs)}</span>
@@ -55,6 +57,12 @@
   }
   .banner:active {
     transform: scale(0.99);
+  }
+  .banner.past {
+    opacity: 0.85;
+  }
+  .banner.past .title {
+    color: var(--text-sub);
   }
   .row {
     display: flex;

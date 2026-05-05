@@ -47,6 +47,13 @@
 
     <h1 class="title">{event.title}</h1>
 
+    {#if event.description}
+      <section class="description">
+        <h2 class="section-title">内容</h2>
+        <pre class="description-body">{event.description}</pre>
+      </section>
+    {/if}
+
     <div class="links">
       {#if upcoming && event.type === 'online' && event.onlineUrl}
         <a class="link primary" href={event.onlineUrl} target="_blank" rel="noopener">
@@ -157,6 +164,20 @@
     font-weight: 700;
     line-height: 1.4;
     margin: 4px 0 16px;
+  }
+  .description {
+    margin-bottom: 20px;
+  }
+  .description-body {
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-main);
+    white-space: pre-wrap;
+    word-wrap: break-word;
   }
   .links {
     display: flex;

@@ -1,6 +1,6 @@
 import type { Event } from './event'
 
-export const SEED_VERSION = 2
+export const SEED_VERSION = 3
 
 const at = (month: number, day: number, hour: number, minute: number) =>
   new Date(2026, month - 1, day, hour, minute).getTime()
@@ -38,12 +38,21 @@ export const SEED_EVENTS: Event[] = [
     type: 'offline',
   },
   {
-    id: 'zoom-2026-06-06',
-    title: 'オンラインZoom実践会 専攻A',
+    id: 'real-2026-06-06',
+    title: 'けーりんリアル実践会 専攻A・懇親会',
     startAtMs: at(6, 6, 9, 0),
-    endAtMs: at(6, 6, 10, 30),
-    type: 'online',
-    onlineUrl: 'https://zoom.us/j/example-2026-06-06',
+    endAtMs: at(6, 6, 16, 15),
+    type: 'offline',
+    description: `=6/6(木)スケジュール=
+※午前中に専攻(Aグループ)がございます
+9:00〜コミュニティリーダー/縁の下の力持ち専攻
+10:15〜クローザー/紹介力基礎トレーニング専攻
+(AoCAN内で2箇所に分かれて同時開催)
+(受付&開場11:30)
+12:00〜14:30 けーりんリアル実践会
+15:00〜16:15 けーりん懇親会
+会場:ライフキャリアcircle 青山キャンパス(AoCAN)
+東京都港区北青山3-2-5 NH青山ビル7階`,
   },
   {
     id: 'real-2026-06-18',

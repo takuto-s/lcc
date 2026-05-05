@@ -1,7 +1,7 @@
 <script lang="ts">
   import { appState } from '../lib/storage.svelte'
   import { findNextEvent } from '../lib/event'
-  import { countMissingUpcoming } from '../lib/attendance'
+  import { countMissingSoon } from '../lib/attendance'
   import EventBanner from './EventBanner.svelte'
   import { AlertCircle } from 'lucide-svelte'
 
@@ -14,7 +14,7 @@
   } = $props()
 
   const now = Date.now()
-  const missingCount = $derived(countMissingUpcoming(appState.events, appState.attendances, now))
+  const missingCount = $derived(countMissingSoon(appState.events, appState.attendances, now))
   const next = $derived(findNextEvent(appState.events, now))
 </script>
 

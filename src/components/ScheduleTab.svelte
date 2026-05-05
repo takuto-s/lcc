@@ -29,6 +29,7 @@
       <EventBanner
         {event}
         attendance={appState.attendances[event.id]}
+        past={!isUpcoming(event, now)}
         onClick={() => onOpenDetail(event.id)}
       />
     {/each}
